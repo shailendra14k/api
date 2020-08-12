@@ -44,7 +44,7 @@ pipeline{
 																echo "${env.PROJECT}"
 																echo "${appName}"
 																if(!openshift.selector("svc",[template:"${appName}"]).exists() || !openshift.selector("dc",[template:"${appName}"]).exists() || !openshift.selector("route",[template:"${appName}"]).exists()){
-																        openshift.newApp(templatePath,"-p PROJECT=${env.PROJECT}","-p APP_NAME=${appName}")
+																        openshift.newApp(templatePath,"-p PROJECT=${env.PROJECT}")
 																}
 																
 																}
