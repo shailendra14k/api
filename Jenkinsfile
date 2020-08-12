@@ -20,8 +20,8 @@ pipeline{
 				}
 				stage('Execute Test Cases'){
 						steps{
-								sh "${mvnCmd} test -Dversion=${env.BUILD_NUMBER}"
-								junit "target/surefire-reports/*.xml"
+								/*sh "${mvnCmd} test -Dversion=${env.BUILD_NUMBER}"
+								junit "target/surefire-reports/*.xml"*/
 						}
 				}
 				stage('Sonar Analysis'){
