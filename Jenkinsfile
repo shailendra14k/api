@@ -65,7 +65,7 @@ pipeline{
 														openshift.withCluster(){
 																openshift.withProject(env.PROJECT){
 																		echo "Using project: ${openshift.project()}"
-																		def build = openshift.selector("bc","${appName}").startBuild("--from-file=target/${appName}-${env.BUILD_NUMBER}.jar", "--wait=true")
+																		def build = openshift.selector("bc","${appName}").startBuild("--from-file=target/api-1.0-SNAPSHOT.jar", "--wait=true")
 																		build.untilEach{
 																				return it.object().status.phase == "Complete"
 																		}
