@@ -18,12 +18,12 @@ pipeline{
 								sh "${mvnCmd} clean package -DskipTests=true -Dversion=${env.BUILD_NUMBER}"
 						}
 				}
-				stage('Execute Test Cases'){
+				/*stage('Execute Test Cases'){
 						steps{
-								/*sh "${mvnCmd} test -Dversion=${env.BUILD_NUMBER}"
-								junit "target/surefire-reports/*.xml"*/
+								sh "${mvnCmd} test -Dversion=${env.BUILD_NUMBER}"
+								junit "target/surefire-reports/*.xml"
 						}
-				}
+				}*/
 				stage('Sonar Analysis'){
 						steps{
 								sh "${mvnCmd} sonar:sonar -Dsonar.host.url=${sonarHost} -DskipTests=true -Dversion=${env.BUILD_NUMBER}"
