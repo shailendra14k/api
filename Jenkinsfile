@@ -23,12 +23,12 @@ pipeline{
 								sh "${mvnCmd} test -Dversion=${env.BUILD_NUMBER}"
 								junit "target/surefire-reports/*.xml"
 						}
-				}*/
+				}
 				stage('Sonar Analysis'){
 						steps{
 								sh "${mvnCmd} sonar:sonar -Dsonar.host.url=${sonarHost} -DskipTests=true -Dversion=${env.BUILD_NUMBER}"
 						} 
-				}
+				}*/
 				stage('Upload artifact to nexus'){
 						steps{
 								sh "${mvnCmd} deploy -DskipTests=true -Dversion=${env.BUILD_NUMBER}"
