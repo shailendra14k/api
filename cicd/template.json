@@ -120,7 +120,25 @@
 				"selector": {
 					"name": "${NAME}"
 				},
-				"triggers": [],
+				"triggers": [
+					{
+												"imageChangeParams": {
+														"automatic": true,
+														"containerNames": [
+																"${NAME}"
+														],
+														"from": {
+																"kind": "ImageStreamTag",
+																"name": "${NAME}:latest"
+														}
+														
+												},
+												"type": "ImageChange"
+										}
+
+				
+				
+				],
 				"template": {
 					"metadata": {
 						"name": "${NAME}",
@@ -141,38 +159,10 @@
 										"containerPort": 8081
 									}
 								],
-								"resources": {
-									"limits": {
-										"memory": "500Mi",
-										"cpu": "1000m"
-									},
-									"requests": {
-										"cpu": "100m",
-										"memory": "256Mi"
-									}
-								},
-								"volumeMounts": [
-									{
-										"mountPath": "/deployments/config",
-										"name": "${NAME}-config"
-									}
-								]
+								
 							}
 						],
-						"volumes": [
-							{
-								"configMap": {
-								    "items": [
-                                        {
-                                            "key": "application-${PROJECT}.properties",
-                                            "path": "application.properties"
-                                        }
-                                    ],
-									"name": "${NAME}"
-								},
-								"name": "${NAME}-config"
-							}
-						]
+
 					}
 				}
 			}
